@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Registro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5"> 
+        <div class="card shadow-sm">
+            <div class="card-header text-center">
+                
+                <h1>Editar Registro</h1>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('actualizar', id=registro.id) }}" method="POST">
+                    <div class="mb-3">
+                        <label for="fecha" class="form-label">Fecha:</label>
+                        <input type="date" class="form-control" id="fecha" name="fecha" value="{{ registro.fecha }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ registro.nombre }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="apellidos" class="form-label">Apellidos:</label>
+                        <input type="text" class="form-control" id="apellidos" name="apellidos" value="{{ registro.apellidos }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Turno:</label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="turno" id="turnoMañana" value="Mañana" {% if registro.turno == 'Mañana' %}checked{% endif %} required>
+                            <label class="form-check-label" for="turnoMañana">Mañana</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="turno" id="turnoTarde" value="Tarde" {% if registro.turno == 'Tarde' %}checked{% endif %}>
+                            <label class="form-check-label" for="turnoTarde">Tarde</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="turno" id="turnoNoche" value="Noche" {% if registro.turno == 'Noche' %}checked{% endif %}>
+                            <label class="form-check-label" for="turnoNoche">Noche</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Seminarios:</label><br>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="seminarioIA" name="seminarios" value="Inteligencia Artificial" {% if 'Inteligencia Artificial' in registro.seminarios %}checked{% endif %}>
+                            <label class="form-check-label" for="seminarioIA">Inteligencia Artificial</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="seminarioML" name="seminarios" value="Machine Learning" {% if 'Machine Learning' in registro.seminarios %}checked{% endif %}>
+                            <label class="form-check-label" for="seminarioML">Machine Learning</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="seminarioSimulacion" name="seminarios" value="Simulación con Arena" {% if 'Simulación con Arena' in registro.seminarios %}checked{% endif %}>
+                            <label class="form-check-label" for="seminarioSimulacion">Simulación con Arena</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="seminarioRobotica" name="seminarios" value="Robótica Educativa" {% if 'Robótica Educativa' in registro.seminarios %}checked{% endif %}>
+                            <label class="form-check-label" for="seminarioRobotica">Robótica Educativa</label>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                        <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> 
+</div>
+ </div>
+
+</body>
+</html>
